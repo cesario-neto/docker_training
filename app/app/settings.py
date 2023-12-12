@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     h.strip() for h in os.getenv('ALLOWED_HOSTS', '').split(',') if h.strip()
 ]
 
+AUTH_USER_MODEL = "account.User"
 
 # Application definition
 
