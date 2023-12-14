@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>To Do List - Login</title>
+    <title>{{ page_title }}</title>
 </head>
 
 <body class="h-100 bg-primary bg-gradient">
@@ -16,14 +16,22 @@
 
                 <h1 class="text-center">Login</h1>
 
-                <form action="home.html" method="" class="row justify-content-center">
+                {{ form.email.errors }}
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+
+                <form action="{% url "login_view" %}" method="post" class="row justify-content-center">
+                    {% csrf_token %}
 
                     <div class="col-12 mb-2 mt-2">
-                        <input type=" email" class="form-control rounded-5" placeholder="Email">
+                        {{ form.email }}
                     </div>
 
                     <div class="col-12 mt-2 mb-2">
-                        <input type="password" class="form-control rounded-5" placeholder="Senha">
+                        {{ form.password }}
                     </div>
 
                     <button type="submit" class="col-5 col-sm-4 col-lg-3 btn btn-primary mt-2">Entrar</button>
@@ -31,7 +39,7 @@
 
                 <div class="text-center pt-3">
                     Não possui conta?
-                    <a href="register.html">Cadastre-se!</a>
+                    <a href="{% url "register_view" %}">Cadastre-se!</a>
                 </div>
             </div>
         </div>
